@@ -7,9 +7,11 @@ import { QinghongChef } from './components/QinghongChef'
 import { Services } from './components/Services'
 
 export function App() {
+  const [paused, setPaused] = useState(false)
   return (
-    <main id="top">
-      <Hero />
+    <main id="top" data-motion={paused ? 'paused' : 'running'}>
+      <PageMotion paused={paused} />
+      <Hero onMotionChange={setPaused} />
       <About />
       <Services />
       <ProjectGrid />
@@ -19,3 +21,5 @@ export function App() {
     </main>
   )
 }
+import { useState } from 'react'
+import { PageMotion } from './components/PageMotion'
